@@ -1,28 +1,32 @@
-import React, { Component, Fragment } from 'react'
-import { render } from 'react-dom'
+import React, { Component, Fragment } from "react";
+import { render } from "react-dom";
 
-class Button extends Component {
-  render() {
-    return (
-      <a href='#' onClick={this.props.onClick}>
-        {this.props.title}
-      </a>
-    )
-  }
-}
+import Button from "./Button";
+
+import "./style.scss";
 
 class App extends Component {
-  clicar() {
-    console.log('Botão clicado')
-  }
-  render() {
-    return (
-      <Fragment>
-        <h1>Olá Mundo!!</h1>
-        <Button title='Enviar' onClick={this.clicar} />
-      </Fragment>
-    )
-  }
+	state = {
+		contador: 0
+	};
+
+	clicar = () => {
+		const { contador } = this.state;
+		this.setState({ contador: contador + 1 });
+	};
+
+	render() {
+		const { contador } = this.state;
+		return (
+			<Fragment>
+				<h1 className="title">Olá Mundo!!</h1>
+				<h3 style={{ color: "#f00" }}>{contador}</h3>
+				<Button title="Enviar" onClick={this.clicar}>
+					Somar
+				</Button>
+			</Fragment>
+		);
+	}
 }
 
-render(<App />, document.getElementById('app'))
+render(<App />, document.getElementById("app"));
